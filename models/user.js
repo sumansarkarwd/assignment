@@ -1,10 +1,5 @@
 const mongoose = require("mongoose");
-const marked = require("marked");
-const slugify = require("slugify");
-const createDomPurifier = require("dompurify");
-const { JSDOM } = require("jsdom");
 const moment = require("moment");
-const dompurify = createDomPurifier(new JSDOM().window);
 
 const UserSchema = new mongoose.Schema(
   {
