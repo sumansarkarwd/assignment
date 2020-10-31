@@ -1,6 +1,6 @@
 # Installation
 ```console
-git clone https://github.com/sumansarkarwd/assignment-webskitters.git
+git clone https://github.com/sumansarkarwd/assignment
 cd assignment-webskitters
 npm i
 cp .env.example .env
