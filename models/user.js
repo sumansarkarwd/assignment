@@ -13,9 +13,16 @@ const UserSchema = new mongoose.Schema(
       type: String,
       unique: true,
     },
+    password: String,
     formatted_address: String,
-    state: String,
-    country: String,
+    state_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "State",
+    },
+    country_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Country",
+    },
     phone: String,
     dob: Date,
     is_active: {
