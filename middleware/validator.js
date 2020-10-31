@@ -1,6 +1,5 @@
 const validator = (schema, property) => {
   return (req, res, next) => {
-    console.log({ d: req[property] });
     const { error } = schema.validate(req[property]);
     const valid = error == null;
 

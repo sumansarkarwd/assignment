@@ -1,4 +1,4 @@
-const Joi = require("joi");
+const Joi = require("joi").extend(require("@hapi/joi-date"));
 
 module.exports = Object.freeze({
   register: Joi.object().keys({
@@ -10,6 +10,6 @@ module.exports = Object.freeze({
     state_id: Joi.string().required(),
     country_id: Joi.string().required(),
     phone: Joi.string().min(10).max(10).required(),
-    dob: Joi.string(),
+    dob: Joi.date().format("YYYY-MM-DD").min("now"),
   }),
 });
