@@ -1,11 +1,16 @@
 <%- include("../layout/header"); %>
 
 <div class="col-sm-6 offset-sm-3 mt-5">
-  <form>
+  <% if(messages.error) { %>
+  <div class="alert alert-danger" role="alert"><%= messages.error %></div>
+  <% } %>
+
+  <form action="/admin/loginSubmit" method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input
         type="email"
+        name="email"
         class="form-control"
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
@@ -16,6 +21,7 @@
       <label for="exampleInputPassword1">Password</label>
       <input
         type="password"
+        name="password"
         class="form-control"
         id="exampleInputPassword1"
         placeholder="Password"
