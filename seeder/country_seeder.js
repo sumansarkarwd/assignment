@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 // load models
-const State = require("../models/state");
+const Country = require("../models/country");
 
 // connect to db
 mongoose.connect(process.env.DB_CONNECTION, {
@@ -18,13 +18,13 @@ mongoose.connect(process.env.DB_CONNECTION, {
 
 // read JSON file
 const events_data = JSON.parse(
-  fs.readFileSync(`${__dirname}/_data/state.json`, "utf-8")
+  fs.readFileSync(`${__dirname}/_data/country.json`, "utf-8")
 );
 
 // Import data
 const importData = async () => {
   try {
-    await State.create(events_data);
+    await Country.create(events_data);
     console.log("Data imported...");
     process.exit(0);
   } catch (error) {
@@ -36,7 +36,7 @@ const importData = async () => {
 // Clean data
 const cleanData = async () => {
   try {
-    await State.deleteMany();
+    await Country.deleteMany();
     console.log("Data deleted...");
     process.exit(0);
   } catch (error) {
