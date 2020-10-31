@@ -1,7 +1,7 @@
 # Installation
 ```console
 git clone https://github.com/sumansarkarwd/assignment
-cd assignment-webskitters
+cd assignment
 npm i
 cp .env.example .env
 node ./seeder/admin_seeder.js -i
