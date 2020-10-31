@@ -1,0 +1,89 @@
+<div class="form-group">
+  <label for="first_name">First name</label>
+  <input
+    value="<%= user.first_name %>"
+    type="text"
+    name="first_name"
+    id="first_name"
+    class="form-control"
+  />
+</div>
+
+<div class="form-group">
+  <label for="last_name">Last name</label>
+  <input
+    value="<%= user.last_name %>"
+    type="text"
+    name="last_name"
+    id="last_name"
+    class="form-control"
+  />
+</div>
+
+<div class="form-group">
+  <label for="formatted_address">Address</label>
+  <input
+    value="<%= user.formatted_address %>"
+    type="text"
+    name="formatted_address"
+    id="formatted_address"
+    class="form-control"
+  />
+</div>
+
+<div class="form-group">
+  <label for="state">State</label>
+  <select class="form-control" id="state">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="country">Country</label>
+  <select class="form-control" id="country">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="phone">Phone</label>
+  <input
+    value="<%= user.phone %>"
+    type="text"
+    name="phone"
+    id="phone"
+    class="form-control"
+  />
+</div>
+
+<div class="form-group">
+  <label for="dob">Date of birth</label>
+  <input
+    value="<%= user.dob %>"
+    type="date"
+    name="dob"
+    id="dob"
+    class="form-control"
+  />
+</div>
+
+<div class="form-check">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    value="<%= user.is_active %>"
+    id="is_active"
+  />
+  <label class="form-check-label" for="is_active"> Active </label>
+</div>
+
+<a href="/" class="btn btn-secondary">Cancel</a>
+<button type="submit" class="btn btn-primary">Save</button>
