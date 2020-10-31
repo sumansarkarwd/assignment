@@ -5,7 +5,7 @@ const { ROLES } = require("../config/constant");
 
 function initializePassport(passport) {
   const authenticateUser = async (email, password, done) => {
-    const user = await User.findOne({ email, role: ROLES.ADMIN });
+    const user = await User.findOne({ email, role: ROLES.ADMIN }).lean();
 
     if (!user) {
       return done(null, false, { message: "No user found!" });
@@ -33,7 +33,7 @@ function initializePassport(passport) {
 
   passport.serializeUser((user, done) => done(null, user.id));
   passport.deserializeUser(async (id, done) =>
-    done(null, await User.findOne({ _id: id, role: ROLES.ADMIN }))
+    done(null, await User.findOne({ _id: id, role: ROLES.ADMIN }).lean())
   );
 }
 

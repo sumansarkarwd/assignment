@@ -1,5 +1,5 @@
 const User = require("../../models/user");
-const moment = require("moment");
+const bcrypt = require("bcrypt");
 const { ROLES } = require("../../config/constant");
 const { signToken } = require("../../util/jwt");
 
@@ -21,6 +21,8 @@ module.exports.register = async (req, res, next) => {
   }
   data.role = ROLES.USER;
 
+  data.password = await bcrypt.hash(data.password, 10);
+
   try {
     const user = await User.create(data);
 
@@ -39,5 +41,5 @@ module.exports.register = async (req, res, next) => {
 
 module.exports.login = async (req, res, next) => {};
 module.exports.authUserDetails = async (req, res, next) => {
-  return res.status(200).json({ foo: "bar" });
+  return res.status(200).json({ user: req.user });
 };

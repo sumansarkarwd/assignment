@@ -17,13 +17,14 @@ function checkNotAuthenticated(req, res, next) {
 
 function checkAuthenticatedJwt(req, res, next) {
   passport.authenticate("jwt", { session: false }, (error, user, info) => {
-    console.log({ error, user, info });
     if (error) {
       return res.status(401).json({ error: "Unauthorized" });
     } else {
       if (!user) {
         return res.status(401).json({ error: "Unauthorized" });
       } else {
+        delete user.password;
+        req.user = user;
         next();
       }
     }
