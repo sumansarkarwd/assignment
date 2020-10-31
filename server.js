@@ -6,28 +6,11 @@ const session = require("express-session");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const app = express();
-const User = require("./models/user");
 const { ROLES } = require("./config/constant");
 
 // load env
 const dotenv = require("dotenv");
 dotenv.config();
-
-// initialize passport for admin user
-const initializePassport = require("./util/passport_config");
-initializePassport(
-  passport,
-  async (email) => {
-    const user = await User.findOne({ email, role: ROLES.ADMIN });
-    return user;
-  },
-  async (id) => {
-    const user = await User.findOne({ _id: id, role: ROLES.ADMIN });
-    return user;
-  }
-);
-// passport for normal user
-require("./util/passport_jwt_config");
 
 // connect to DB
 try {

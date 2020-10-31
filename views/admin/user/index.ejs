@@ -6,31 +6,44 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email Id</th>
+          <th scope="col">DOB</th>
+          <th scope="col">Phone</th>
+          <th scope="col">State</th>
+          <th scope="col">country</th>
+          <th scope="col">Status</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
+        <% Users.forEach(function(user) { %>
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td><%= user.first_name %> <%= user.last_name %></td>
+          <td><%= user.email%></td>
+          <td><%= user.dob%></td>
+          <td><%= user.phone%></td>
+          <td><%= user.state_id.name%></td>
+          <td><%= user.country_id.name%></td>
+          <td>
+            <% if(user.is_active === true) { %>
+            <span class="badge badge-pill badge-success">ACTIVE</span>
+            <% } else { %>
+            <span class="badge badge-pill badge-secondary">INACTIVE</span>
+            <% } %>
+          </td>
+          <td>
+            <a href="user/<%= user.id %>/edit" class="btn btn-info">Edit</a>
+            <form
+              action="/users/<%= user.id %>/delete?_method=DELETE"
+              method="POST?_method=DELETE"
+              class="d-inline"
+            >
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </td>
         </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        <%})%>
       </tbody>
     </table>
   </div>

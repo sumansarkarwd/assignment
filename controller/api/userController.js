@@ -19,6 +19,7 @@ module.exports.register = async (req, res, next) => {
   if (user_exists_with_phone) {
     return res.status(409).json({ error: "Phone exists" });
   }
+  data.role = ROLES.USER;
 
   try {
     const user = await User.create(data);

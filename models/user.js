@@ -1,6 +1,8 @@
+"use strict";
 const mongoose = require("mongoose");
 const moment = require("moment");
-
+require("./country");
+require("./state");
 const UserSchema = new mongoose.Schema(
   {
     role: {
