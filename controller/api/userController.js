@@ -42,7 +42,30 @@ module.exports.register = async (req, res, next) => {
   }
 };
 
-module.exports.login = async (req, res, next) => {};
+module.exports.login = async (req, res, next) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email, is_active: true, deleted_on: null });
+  if (!user) {
+    return res.status(401).json({ error: "Invalid login credentials" });
+  }
+
+  try {
+    if (await bcrypt.compare(password, user.password)) {
+      const token = signToken(user);
+      return res.status(200).json({
+        data: {
+          user,
+          token,
+        },
+      });
+    } else {
+      return res.status(401).json({ error: "Invalid login credentials" });
+    }
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports.authUserDetails = async (req, res, next) => {
   return res.status(200).json({ user: req.user });
 };
