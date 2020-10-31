@@ -1,89 +1,94 @@
-<div class="form-group">
-  <label for="first_name">First name</label>
-  <input
-    value="<%= user.first_name %>"
-    type="text"
-    name="first_name"
-    id="first_name"
-    class="form-control"
-  />
-</div>
+<form method="POST" action="/admin/dashboard/user/<%= user.id %>/update">
+  <% if(messages.error) { %>
+    <div class="alert alert-danger" role="alert"><%= messages.error %></div>
+  <% } %>
 
-<div class="form-group">
-  <label for="last_name">Last name</label>
-  <input
-    value="<%= user.last_name %>"
-    type="text"
-    name="last_name"
-    id="last_name"
-    class="form-control"
-  />
-</div>
-
-<div class="form-group">
-  <label for="formatted_address">Address</label>
-  <input
-    value="<%= user.formatted_address %>"
-    type="text"
-    name="formatted_address"
-    id="formatted_address"
-    class="form-control"
-  />
-</div>
-
-<div class="form-group">
-  <label for="state">State</label>
-  <select class="form-control" id="state">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-  </select>
-</div>
-
-<div class="form-group">
-  <label for="country">Country</label>
-  <select class="form-control" id="country">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-  </select>
-</div>
-
-<div class="form-group">
-  <label for="phone">Phone</label>
-  <input
-    value="<%= user.phone %>"
-    type="text"
-    name="phone"
-    id="phone"
-    class="form-control"
-  />
-</div>
-
-<div class="form-group">
-  <label for="dob">Date of birth</label>
-  <input
-    value="<%= user.dob %>"
-    type="date"
-    name="dob"
-    id="dob"
-    class="form-control"
-  />
-</div>
-
-<div class="form-check">
-  <input
-    class="form-check-input"
-    type="checkbox"
-    value="<%= user.is_active %>"
-    id="is_active"
-  />
-  <label class="form-check-label" for="is_active"> Active </label>
-</div>
-
-<a href="/" class="btn btn-secondary">Cancel</a>
-<button type="submit" class="btn btn-primary">Save</button>
+  <div class="form-group">
+    <label for="first_name">First name</label>
+    <input
+      value="<%= user.first_name %>"
+      type="text"
+      name="first_name"
+      id="first_name"
+      class="form-control"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="last_name">Last name</label>
+    <input
+      value="<%= user.last_name %>"
+      type="text"
+      name="last_name"
+      id="last_name"
+      class="form-control"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="formatted_address">Address</label>
+    <input
+      value="<%= user.formatted_address %>"
+      type="text"
+      name="formatted_address"
+      id="formatted_address"
+      class="form-control"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="state">State</label>
+    <select class="form-control" id="state" name="state_id">
+      <% States.forEach(function(state) { %>
+      <option value="<%= state.id %>" <%= state.id == user.state_id ? 'selected' : '' %> ><%= state.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="country">Country</label>
+    <select class="form-control" id="country" name="country_id">
+      <% Countries.forEach(function(country) { %>
+      <option value="<%= country.id %>" <%= country.id == user.country_id ? 'selected' : '' %> ><%= country.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input
+      value="<%= user.phone %>"
+      type="text"
+      name="phone"
+      id="phone"
+      class="form-control"
+    />
+  </div>
+  
+  <div class="form-group">
+    <label for="dob">Date of birth</label>
+    <input
+      value="<%= user.dob %>"
+      type="date"
+      name="dob"
+      id="dob"
+      class="form-control"
+    />
+  </div>
+  
+  <div class="form-check mb-4">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      value="on"
+      id="is_active"
+      name="is_active"
+      <%= user.is_active == true ? 'checked' : '' %>
+    />
+    <label class="form-check-label" for="is_active"> Active </label>
+  </div>
+  
+  <a href="/admin/dashboard/user" class="btn btn-secondary">Cancel</a>
+  <button type="submit" class="btn btn-primary">Save</button>
+  
+</form>

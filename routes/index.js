@@ -13,5 +13,8 @@ require("../util/passport_jwt_config");
 
 app.use("/admin", adminRoutes);
 app.use("/api", apiRoutes);
+app.use("/404", function (req, res) {
+  res.render("error/404");
+});
 
 module.exports = app;

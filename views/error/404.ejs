@@ -1,0 +1,6 @@
+<%- include("../layout/header"); %>
+
+<h1 class="text-center mt-3">404</h1>
+<% if(messages.error) { %>
+<div class="alert alert-danger" role="alert"><%= messages.error %></div>
+<% } %> <%- include("../layout/footer"); %>

@@ -12,4 +12,13 @@ module.exports = Object.freeze({
     phone: Joi.string().min(10).max(10).required(),
     dob: Joi.date().format("YYYY-MM-DD").min("now"),
   }),
+  update: Joi.object().keys({
+    first_name: Joi.string().required(),
+    last_name: Joi.string().required(),
+    formatted_address: Joi.string().required(),
+    state_id: Joi.string().required(),
+    country_id: Joi.string().required(),
+    phone: Joi.string().min(10).max(10).required(),
+    dob: Joi.date().format("YYYY-MM-DD").min("now"),
+  }).unknown(),
 });

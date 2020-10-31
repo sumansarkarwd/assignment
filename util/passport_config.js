@@ -5,7 +5,7 @@ const { ROLES } = require("../config/constant");
 
 function initializePassport(passport) {
   const authenticateUser = async (email, password, done) => {
-    const user = await User.findOne({ email, role: ROLES.ADMIN }).lean();
+    const user = await User.findOne({ email, role: ROLES.ADMIN });
 
     if (!user) {
       return done(null, false, { message: "No user found!" });

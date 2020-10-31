@@ -8,9 +8,11 @@ module.exports.register = async (req, res, next) => {
 
   const user_exists_with_email = await User.exists({
     email: data.email,
+    deleted_on: null,
   });
   const user_exists_with_phone = await User.exists({
     phone: data.phone,
+    deleted_on: null,
   });
 
   if (user_exists_with_email) {
@@ -24,7 +26,8 @@ module.exports.register = async (req, res, next) => {
   data.password = await bcrypt.hash(data.password, 10);
 
   try {
-    const user = await User.create(data);
+    let user = await User.create(data);
+    user = await User.findById(user._id).select("-password");
 
     const token = signToken(user);
 
