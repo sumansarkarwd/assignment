@@ -13,7 +13,7 @@ const userValidations = require("../../../validations/userValidations");
 const router = express.Router();
 
 router.post("/register", validator(userValidations.register, "body"), register);
-router.post("/login", login);
+router.post("/login", validator(userValidations.login, "body"), login);
 router.post("/me", checkAuthenticatedJwt, authUserDetails);
 
 module.exports = router;
