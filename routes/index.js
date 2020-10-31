@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
+const passport = require("passport");
 
 const adminRoutes = require("./admin");
-const userRoutes = require("./admin/dashboard/user");
+const apiRoutes = require("./api");
 
 app.use("/admin", adminRoutes);
-// app.use("/user", userRoutes);
+app.use("/api", apiRoutes);
 
 module.exports = app;

@@ -24,7 +24,7 @@ const UserSchema = new mongoose.Schema(
       ref: "Country",
     },
     phone: String,
-    dob: Date,
+    dob: String,
     is_active: {
       type: Boolean,
       default: true,
